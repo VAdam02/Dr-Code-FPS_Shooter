@@ -561,7 +561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbarPrefab: {fileID: 8663820303170155628, guid: e153391f81b1f8b46b82ca12693f5d05,
     type: 3}
-  canvas: {fileID: 0}
   health: 100
   bar: {fileID: 0}
 --- !u!1 &9196439505610520472

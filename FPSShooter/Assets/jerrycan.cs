@@ -30,14 +30,17 @@ public class jerrycan : MonoBehaviour
         can.transform.localEulerAngles = new Vector3(can.transform.eulerAngles.x, can.transform.eulerAngles.y + (360 / 6 * Time.deltaTime), can.transform.eulerAngles.z);
 
         position += Time.deltaTime / 2;
+        // 0 - 1
         if (position < 1)
         {
             can.transform.localPosition = new Vector3(can.transform.localPosition.x, position, can.transform.localPosition.z);
         }
+        // 1 - 2
         else if (position < 2)
         {
             can.transform.localPosition = new Vector3(can.transform.localPosition.x, 2 - position, can.transform.localPosition.z);
         }
+        //reset
         else
         {
             position -= 2;
@@ -54,8 +57,8 @@ public class jerrycan : MonoBehaviour
         {
             jetpack.fuel = 1000;
         }
-        deltatime = 0;
 
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        deltatime = 0;
+        can.SetActive(false);
     }
 }

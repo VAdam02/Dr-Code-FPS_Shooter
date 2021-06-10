@@ -30,7 +30,7 @@ public class bulletmover : MonoBehaviour
         
         Health healthComp = (Health)collision.gameObject.GetComponent(typeof(Health));
         healthComp.health = healthComp.health - 10;
-
+        //TODO kill us
         Destroy(gameObject);
     }
 }

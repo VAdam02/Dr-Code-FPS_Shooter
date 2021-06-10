@@ -14,6 +14,11 @@ public class Health : MonoBehaviour
     void Start()
     {
         bar = Instantiate(healthbarPrefab, GameObject.Find("Canvas").transform);
+
+        if (gameObject.name == "Player 1")
+        {
+            bar.SetActive(false);
+        }
     }
 
     // Update is called once per frame
