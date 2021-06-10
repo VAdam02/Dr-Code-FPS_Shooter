@@ -42,9 +42,16 @@ public class Connection : MonoBehaviour
             byte[] data = new byte[13];
             stream.Read(data, 0, data.Length);
 
+            string igen = "";
+            for (int xy = 0; xy < data.Length; xy++)
+            {
+                igen += data[xy] + "\t";
+            }
+            Debug.Log("fogadás - " + igen);
+
             if (!spawned[data[0]])
             {
-                GameObject xy = Instantiate(enemy);
+                GameObject xy = Instantiate(enemy);//There is the problem
                 spawned[data[0]] = true;
                 enemys[data[0]] = xy.GetComponent<DataReceiver>();
             }
@@ -91,6 +98,8 @@ public class Connection : MonoBehaviour
         cache = DecToBin(rot.z);
         data[11] = cache[0];
         data[12] = cache[1];
+
+        WriteData(data);
     }
 
     public static byte[] DecToBin(double num)
@@ -158,13 +167,45 @@ public class Connection : MonoBehaviour
             data[i] = (byte)cache;
         }
 
-        string text = "";
-        for (int x = 0; x < binary.Length; x++)
-        {
-            text += binary[x];
-        }
-        Debug.Log(text);
-
         return data;
+    }
+
+    public static float ByteToDec(byte[] data)
+    {
+        int[] binary = new int[data.Length * 8];
+
+        //byte to bin
+        for (int i = 0; i < data.Length; i++)
+        {
+            int num = data[i];
+            for (int j = 7; j > 0; j--)
+            {
+                binary[j + (i * 8)] = (int)(num % 2);
+                num = (int)(num / 2);
+            }
+        }
+
+        //bin to num
+        float eredmeny = 0;
+
+        for (int i = binary.Length - 1; i > 7; i--)
+        {
+            eredmeny = (eredmeny + binary[i]) / 2;
+        }
+
+        int cache = 0;
+        for (int i = 7; i > 0; i--)
+        {
+            cache = (cache * 2) + binary[i];
+        }
+        eredmeny = eredmeny + cache;
+
+        //+/-
+        if (binary[0] == 0)
+        {
+            eredmeny = eredmeny * (-1);
+        }
+
+        return eredmeny;
     }
 }

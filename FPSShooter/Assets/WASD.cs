@@ -40,7 +40,7 @@ public class WASD : MonoBehaviour
         }
         if (Input.GetKey("space"))
         {
-            rb.AddForce(0, 100, 0);
+            rb.AddForce(0, 1000 * Time.deltaTime, 0);
         }
         //wasd space
 

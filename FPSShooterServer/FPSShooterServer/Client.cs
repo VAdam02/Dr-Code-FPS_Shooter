@@ -36,9 +36,17 @@ namespace FPSShooterServer
 		{
 			while (client.readrunning)
 			{
-				byte[] data = new byte[7];
-				client.stream.Read(data, 0, 7);
+				byte[] data = new byte[13];
+
+				client.stream.Read(data, 0, 13);
 				data[0] = client.ID;
+
+				Console.Write("read - ");
+				for (int xy = 0; xy < data.Length; xy++)
+				{
+					Console.Write(data[xy] + "\t");
+				}
+				Console.WriteLine();
 
 				for (int i = 0; i < Program.players.Count; i++)
 				{
@@ -52,7 +60,14 @@ namespace FPSShooterServer
 
 		private static void WriteStream(Client client, byte[] data)
 		{
+			Console.Write("send - ");
+			for (int xy = 0; xy < data.Length; xy++)
+			{
+				Console.Write(data[xy] + "\t");
+			}
+			Console.WriteLine();
 			client.stream.Write(data, 0, data.Length);
+			Console.WriteLine("data sent");
 		}
 	}
 }
