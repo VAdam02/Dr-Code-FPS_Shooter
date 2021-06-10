@@ -14,14 +14,13 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cam = (Camera)GameObject.Find("Player 1").transform.GetChild(0).GetChild(1).GetComponent(typeof(Camera));
         bar = gameObject.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //jetpack jetpack = (jetpack)jetpackObject.GetComponent(typeof(jetpack));
-
         RectTransform rect = (RectTransform)bar.GetComponent(typeof(RectTransform));
         int size = (int)(max * value);
         int pos = (max - size) / -2;
