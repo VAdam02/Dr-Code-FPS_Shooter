@@ -31,8 +31,23 @@ public class Connection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        while (spawnqueue.Count > 0)
+        {
+            byte[] data = spawnqueue[0];
 
+            if (!spawned[data[0]])
+            {
+                GameObject xy = Instantiate(enemy);
+                spawned[data[0]] = true;
+                enemys[data[0]] = xy.gameObject.transform.GetChild(0).GetComponent<DataReceiver>();
+                enemys[data[0]].ReadData(data);
+            }
+
+            spawnqueue.RemoveAt(0);
+        }
     }
+
+    static List<byte[]> spawnqueue = new List<byte[]>();
 
     public static void ReadData(GameObject enemy)
     {
@@ -42,20 +57,14 @@ public class Connection : MonoBehaviour
             byte[] data = new byte[13];
             stream.Read(data, 0, data.Length);
 
-            string igen = "";
-            for (int xy = 0; xy < data.Length; xy++)
-            {
-                igen += data[xy] + "\t";
-            }
-            Debug.Log("fogadás - " + igen);
-
             if (!spawned[data[0]])
             {
-                GameObject xy = Instantiate(enemy);//There is the problem
-                spawned[data[0]] = true;
-                enemys[data[0]] = xy.GetComponent<DataReceiver>();
+                spawnqueue.Add(data);
             }
-            enemys[data[0]].ReadData(data);
+            else
+            {
+                enemys[data[0]].ReadData(data);
+            }
         }
     }
 
@@ -194,7 +203,7 @@ public class Connection : MonoBehaviour
         }
 
         int cache = 0;
-        for (int i = 7; i > 0; i--)
+        for (int i = 1; i < 8; i++)
         {
             cache = (cache * 2) + binary[i];
         }
