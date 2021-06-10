@@ -17,6 +17,6 @@ public class DataSender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Connection.WriteData(body.transform.position, new Vector3(head.transform.rotation.x, body.transform.rotation.y, head.transform.rotation.z));
+        Connection.WriteData(body.transform.position, new Vector3(head.transform.eulerAngles.x/3, body.transform.eulerAngles.y/3, head.transform.eulerAngles.z/3));
     }
 }

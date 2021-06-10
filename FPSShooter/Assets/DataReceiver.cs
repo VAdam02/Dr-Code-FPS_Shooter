@@ -27,8 +27,8 @@ public class DataReceiver : MonoBehaviour
         buffer[1] = Connection.ByteToDec(new byte[] { data[3], data[4] });
         buffer[2] = Connection.ByteToDec(new byte[] { data[5], data[6] });
 
-        buffer[3] = Connection.ByteToDec(new byte[] { data[7], data[8] });
-        buffer[4] = Connection.ByteToDec(new byte[] { data[9], data[10] });
-        buffer[5] = Connection.ByteToDec(new byte[] { data[11], data[12] });
+        buffer[3] = Connection.ByteToDec(new byte[] { data[7], data[8] }) * 3;
+        buffer[4] = Connection.ByteToDec(new byte[] { data[9], data[10] }) * 3;
+        buffer[5] = Connection.ByteToDec(new byte[] { data[11], data[12] }) * 3;
     }
 }

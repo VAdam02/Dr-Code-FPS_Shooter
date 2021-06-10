@@ -18,8 +18,9 @@ namespace FPSShooterServer
 		static void Main(string[] args)
 		{
 			//65535
-			int port = 50000;
-			IPAddress address = IPAddress.Parse("127.0.0.1");
+			int port = 55000;
+			//IPAddress address = IPAddress.Parse("127.0.0.1");
+			IPAddress address = IPAddress.Parse("192.168.100.129");
 
 			players = new List<Client>();
 

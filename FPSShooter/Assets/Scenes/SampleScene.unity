@@ -358,6 +358,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: right
       objectReference: {fileID: 0}
+    - target: {fileID: 2928753581088417343, guid: 50edd247e6e640849bc9f5a4e4828849,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 2930308718190877746, guid: 50edd247e6e640849bc9f5a4e4828849,
         type: 3}
       propertyPath: m_RootOrder

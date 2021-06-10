@@ -21,7 +21,9 @@ public class Connection : MonoBehaviour
     {
         for (int i = 0; i < spawned.Length; i++) { spawned[i] = false; }
 
-        client = new TcpClient("127.0.0.1", 50000);
+        //client = new TcpClient("127.0.0.1", 50000);
+        //client = new TcpClient("2a01:36d:1600:bec:f97a:5031:824b:75c6", 55000);
+        client = new TcpClient("192.168.100.129", 55000);
         stream = client.GetStream();
 
         reader = new Thread(() => ReadData(enemy));
@@ -187,7 +189,7 @@ public class Connection : MonoBehaviour
         for (int i = 0; i < data.Length; i++)
         {
             int num = data[i];
-            for (int j = 7; j > 0; j--)
+            for (int j = 7; j >= 0; j--)
             {
                 binary[j + (i * 8)] = (int)(num % 2);
                 num = (int)(num / 2);
