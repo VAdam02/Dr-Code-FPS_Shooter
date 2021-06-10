@@ -8,7 +8,9 @@ public class Movement : MonoBehaviour
     public GameObject head;
     public GameObject arm;
     public Camera center;
+    public Camera scopecam;
     public GameObject bullet;
+    public GameObject lookintothedistant;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -31,10 +33,14 @@ public class Movement : MonoBehaviour
 
         Ray ray = center.ScreenPointToRay(new Vector3(Screen.width /2, Screen.height / 2, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
+        if (Physics.Raycast(ray, out hit, 25))
         {
             Vector3 target = hit.point;
             arm.transform.LookAt(target);
+        }
+        else
+        {
+            arm.transform.LookAt(lookintothedistant.transform);
         }
         
         float multiplier = 5;
@@ -58,14 +64,25 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(0, 100, 0);
         }
-
+        
         if (Input.GetMouseButtonDown(0))
         {
             GameObject shot = Instantiate(bullet);
             shot.transform.position = arm.transform.position;
             shot.transform.rotation = arm.transform.rotation;
 
-            shot.transform.position += shot.transform.forward;
+            shot.transform.position += shot.transform.forward *2.8f;
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            center.enabled = false;
+            scopecam.enabled = true;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            center.enabled = true;
+            scopecam.enabled = false;
         }
     }
 }
