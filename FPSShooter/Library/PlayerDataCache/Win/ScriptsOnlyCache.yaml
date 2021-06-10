@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - WASD
     - bulletmover
     - jetpack
+    - jetpack2
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -59,33 +60,35 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1508}
+      Script: {instanceID: 1514}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1664}
     - Class: 114
-      Script: {instanceID: 1774}
+      Script: {instanceID: 1782}
     - Class: 114
-      Script: {instanceID: 1946}
+      Script: {instanceID: 1954}
     - Class: 114
-      Script: {instanceID: 2290}
+      Script: {instanceID: 2298}
     - Class: 114
-      Script: {instanceID: 2394}
+      Script: {instanceID: 2402}
     - Class: 114
-      Script: {instanceID: 2486}
+      Script: {instanceID: 2494}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2666}
+      Script: {instanceID: 2674}
     - Class: 114
-      Script: {instanceID: 2848}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 3020}
+      Script: {instanceID: 3028}
     - Class: 114
-      Script: {instanceID: 3054}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3078}
+      Script: {instanceID: 3086}
     - Class: 114
-      Script: {instanceID: 3394}
+      Script: {instanceID: 3402}
+    - Class: 114
+      Script: {instanceID: 17012}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -460,10 +463,10 @@ ScriptsOnlyBuild:
       Hash: 2fd429280f2ed3eeb41230c2840ac52b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: jetpack
+    className: jetpack2
   - hash:
       serializedVersion: 2
-      Hash: b8b42ba420b738adfcdbdea870d5e6d5
+      Hash: cee769b36a28bf6c4e372a3980b439bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Connection
@@ -587,6 +590,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: 2fd429280f2ed3eeb41230c2840ac52b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: jetpack
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

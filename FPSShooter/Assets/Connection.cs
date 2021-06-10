@@ -9,8 +9,9 @@ public class Connection : MonoBehaviour
     private static TcpClient client;
     private static NetworkStream stream;
     public GameObject enemy; //amit másolni fog az ellenséges játékosokhoz
+    public GameObject ammo;
 
-    public static DataReceiver[] enemys = new DataReceiver[255];
+    public static DataReceiver[] enemys = new DataReceiver[256];
     public static bool[] spawned = new bool[enemys.Length];
 
     public static Thread reader;
@@ -26,7 +27,7 @@ public class Connection : MonoBehaviour
         client = new TcpClient("192.168.100.129", 55000);
         stream = client.GetStream();
 
-        reader = new Thread(() => ReadData(enemy));
+        reader = new Thread(() => ReadData());
         reader.Start();
     }
 
@@ -37,7 +38,13 @@ public class Connection : MonoBehaviour
         {
             byte[] data = spawnqueue[0];
 
-            if (!spawned[data[0]])
+            if (data[0] == 255)
+            {
+                GameObject xy = Instantiate(ammo);
+                xy.transform.position = new Vector3(ByteToDec(new byte[] { data[1], data[2] }), ByteToDec(new byte[] { data[3], data[4] }), ByteToDec(new byte[] { data[5], data[6] }));
+                xy.transform.localEulerAngles = new Vector3(ByteToDec(new byte[] { data[7], data[8] }) * 3, ByteToDec(new byte[] { data[9], data[10] }) * 3, ByteToDec(new byte[] { data[11], data[12] }) * 3);
+            }
+            else if (!spawned[data[0]])
             {
                 GameObject xy = Instantiate(enemy);
                 spawned[data[0]] = true;
@@ -51,7 +58,7 @@ public class Connection : MonoBehaviour
 
     static List<byte[]> spawnqueue = new List<byte[]>();
 
-    public static void ReadData(GameObject enemy)
+    public static void ReadData()
     {
         reading = true;
         while (reading)
@@ -74,11 +81,11 @@ public class Connection : MonoBehaviour
     {
         stream.Write(data, 0, data.Length);
     }
-    public static void WriteData(Vector3 pos, Vector3 rot)
+    public static void WriteData(byte id, Vector3 pos, Vector3 rot)
     {
         byte[] data = new byte[13];
 
-        data[0] = 0;
+        data[0] = id;
 
         //pos x
         byte[] cache = DecToBin(pos.x);

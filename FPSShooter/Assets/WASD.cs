@@ -53,6 +53,8 @@ public class WASD : MonoBehaviour
             shot.transform.rotation = arm.transform.rotation;
 
             shot.transform.position += shot.transform.forward * 2.8f;
+
+            Connection.WriteData(255, shot.transform.position, new Vector3(shot.transform.eulerAngles.x / 3, shot.transform.eulerAngles.y / 3, shot.transform.eulerAngles.z / 3));
         }
         //lövöldözés
 

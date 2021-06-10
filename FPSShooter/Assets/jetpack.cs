@@ -12,40 +12,40 @@ public class jetpack : MonoBehaviour
     void Start()
     {
         sound.Stop();
-        
+        rightfire.Stop();
+        leftfire.Stop();
     }
 
     float deltatime = 0;
-    float soundtime = 0;
     // Update is called once per frame
     void Update()
     {
-        if (soundtime > 1)
-        {
-            sound.time = 6;
-            soundtime = 0;
-            //sound.Play();
-        }
-        soundtime += Time.deltaTime;
-
+        //2-9.5
         if (Input.GetKeyDown("space"))
         {
             rightfire.Play();
             leftfire.Play();
 
-            sound.time = 6;
-            sound.Play();
+            sound.time = 0;
             sound.volume = 0.25f;
+            sound.Play();
+
             deltatime = 0;
         }
-        if (!Input.GetKey("space"))
+
+        if (deltatime > 9.5f)
+        {
+            sound.time = 1;
+            deltatime = 1;
+        }
+
+        if (Input.GetKeyUp("space"))
         {
             rightfire.Stop();
             leftfire.Stop();
 
-            deltatime += Time.deltaTime;
-
-            sound.volume = 0.25f * (0.5f - deltatime);
+            sound.time = 9.5f;
+            deltatime = 1;
         }
     }
 }

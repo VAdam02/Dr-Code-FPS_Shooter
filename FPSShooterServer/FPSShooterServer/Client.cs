@@ -39,7 +39,11 @@ namespace FPSShooterServer
 				byte[] data = new byte[13];
 
 				client.stream.Read(data, 0, 13);
-				data[0] = client.ID;
+
+				if (data[0] != 255)
+				{
+					data[0] = client.ID;
+				}
 
 				Console.Write("read - ");
 				for (int xy = 0; xy < data.Length; xy++)
