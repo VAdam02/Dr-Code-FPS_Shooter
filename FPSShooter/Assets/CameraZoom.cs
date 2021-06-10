@@ -17,12 +17,14 @@ public class CameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        maxZoom.transform.LookAt(minZoom.transform);
+        Debug.DrawLine(maxZoom.transform.position, minZoom.transform.position, Color.cyan);
+
         RaycastHit hit;
 
+        maxZoom.transform.LookAt(minZoom.transform);
         if (Physics.Raycast(maxZoom.transform.position, maxZoom.transform.TransformDirection(Vector3.forward), out hit, Vector3.Distance(maxZoom.transform.position, minZoom.transform.position)))
         {
-            maincam.transform.position = Vector3.MoveTowards(hit.point, maxZoom.transform.position, 0.1f);
+            maincam.transform.position = Vector3.MoveTowards(hit.point, maxZoom.transform.position, 1);
         }
         else
         {

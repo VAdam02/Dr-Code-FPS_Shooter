@@ -13,7 +13,15 @@ public class DEBUGSCRIPT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int x = (int)gameObject.transform.position.x;
-        Debug.Log("x: " + x + "\t" + Connection.DecToBin(x));
+        double x = gameObject.transform.position.x;
+        byte[] asd = Connection.DecToBin(x);
+
+        string text = "";
+        for (int a = 0; a < asd.Length; a++)
+        {
+            text += asd[a] + " ";
+        }
+
+        Debug.Log(text + "\tX: " + x);
     }
 }
