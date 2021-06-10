@@ -6,6 +6,9 @@ public class Movement : MonoBehaviour
 {
     public GameObject character;
     public GameObject head;
+    public GameObject arm;
+    public Camera center;
+    public GameObject bullet;
     Rigidbody rb;
 
     // Start is called before the first frame update
@@ -26,6 +29,14 @@ public class Movement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -45f, 45f);
         head.transform.localRotation = Quaternion.Euler(xRotation, head.transform.localRotation.eulerAngles.y, 0);
 
+        Ray ray = center.ScreenPointToRay(new Vector3(Screen.width /2, Screen.height / 2, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            Vector3 target = hit.point;
+            arm.transform.LookAt(target);
+        }
+        
         float multiplier = 5;
         if (Input.GetKey("w"))
         {
@@ -46,6 +57,15 @@ public class Movement : MonoBehaviour
         if (Input.GetKey("space"))
         {
             rb.AddForce(0, 100, 0);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject shot = Instantiate(bullet);
+            shot.transform.position = arm.transform.position;
+            shot.transform.rotation = arm.transform.rotation;
+
+            shot.transform.position += shot.transform.forward;
         }
     }
 }
