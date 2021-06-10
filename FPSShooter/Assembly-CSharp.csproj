@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ArmLook.cs" />
+    <Compile Include="Assets\CameraZoom.cs" />
     <Compile Include="Assets\Connection.cs" />
     <Compile Include="Assets\DEBUGSCRIPT.cs" />
     <Compile Include="Assets\MouseLook.cs" />
