@@ -53,13 +53,14 @@ public class jetpack : MonoBehaviour
             deltatime = 1;
         }
 
-        if (Input.GetKeyUp("space") || fuel < 0 )
+        if (Input.GetKeyUp("space") || fuel < 0)
         {
             rocketing = false;
             rightfire.Stop();
             leftfire.Stop();
 
             sound.time = 9.5f;
+
             deltatime = 1;
         }
     }
