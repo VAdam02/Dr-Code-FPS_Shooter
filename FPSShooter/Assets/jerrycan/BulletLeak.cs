@@ -16,8 +16,39 @@ public class BulletLeak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        jerrycan can = (jerrycan)GetComponent(typeof(jerrycan));
+
         for (int i = 0; i < leaks.Count; i++)
         {
+            if (leaks[i].isEmitting)
+            {
+                // 0 - 1
+                double height = leaks[i].transform.localPosition.y;
+                double percent = can.fuel / 500;
+
+                double relativepercent = (percent - height) / (1-height);
+
+                if (relativepercent > 0.1)
+                {
+
+                    leaks[i].startSpeed = (float)relativepercent * 2;
+                    leaks[i].startSize = (float)relativepercent * 0.25f;
+
+                    //leaks[i].main().startSpeed.constant = 3;
+                    can.fuel = can.fuel - (10 * Time.deltaTime * relativepercent);
+                }
+                else
+                {
+                    leaks[i].Stop();
+                }
+
+                if (can.fuel < 0)
+                {
+                    can.fuel = 0;
+                    leaks[i].Stop();
+                }
+            }
+
             if (leaks[i].isStopped)
             {
                 Destroy(leaks[i].gameObject);
@@ -26,6 +57,13 @@ public class BulletLeak : MonoBehaviour
                 i--;
             }
         }
+
+        /*
+        if (leaks.Count > 0)
+        {
+            Debug.Log(leaks[0].isEmitting);
+        }
+        */
     }
 
     void OnCollisionEnter(Collision collision)

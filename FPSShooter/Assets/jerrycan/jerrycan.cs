@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class jerrycan : MonoBehaviour
 {
-    public double deltatime = 0;
+    public double fuel = 500;
+    public double deltatime = 10;
     GameObject can;
 
     // Start is called before the first frame update
@@ -18,11 +19,17 @@ public class jerrycan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (deltatime > 10)
+        if (deltatime == -1)
+        {
+            fuel = 500;
+            deltatime = -2;
+        }
+        else if (deltatime > 10)
         {
             can.transform.GetChild(0).gameObject.SetActive(true);
+            deltatime = -1;
         }
-        else
+        else if (deltatime >= 0)
         {
             deltatime += Time.deltaTime;
         }
@@ -57,7 +64,7 @@ public class jerrycan : MonoBehaviour
         GameObject jetpackObject = collision.gameObject.transform.GetChild(2).gameObject;
 
         jetpack jetpack = (jetpack)jetpackObject.GetComponent(typeof(jetpack));
-        jetpack.fuel = jetpack.fuel + 500;
+        jetpack.fuel = jetpack.fuel + fuel;
         if (jetpack.fuel > 1000)
         {
             jetpack.fuel = 1000;
