@@ -7,6 +7,7 @@ public class jetpack : MonoBehaviour
     public ParticleSystem rightfire;
     public ParticleSystem leftfire;
     public AudioSource sound;
+    public int fuel = 1000;
 
     // Start is called before the first frame update
     void Start()

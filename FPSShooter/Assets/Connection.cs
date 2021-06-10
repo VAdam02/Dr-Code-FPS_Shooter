@@ -38,6 +38,7 @@ public class Connection : MonoBehaviour
         {
             byte[] data = spawnqueue[0];
 
+
             if (data[0] == 255)
             {
                 GameObject xy = Instantiate(ammo);

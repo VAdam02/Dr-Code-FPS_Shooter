@@ -66,6 +66,7 @@
     <Compile Include="Assets\jetpack2.cs" />
     <Compile Include="Assets\Connection.cs" />
     <Compile Include="Assets\jetpack.cs" />
+    <Compile Include="Assets\jerrycan.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\AurynSky\Rockets Missiles and Bombs\READ ME.txt" />
