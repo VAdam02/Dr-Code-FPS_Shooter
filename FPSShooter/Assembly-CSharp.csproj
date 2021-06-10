@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\ArmLook.cs" />
     <Compile Include="Assets\Connection.cs" />
+    <Compile Include="Assets\DEBUGSCRIPT.cs" />
     <Compile Include="Assets\MouseLook.cs" />
     <Compile Include="Assets\WASD.cs" />
     <Compile Include="Assets\bulletmover.cs" />
