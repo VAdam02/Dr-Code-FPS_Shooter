@@ -27,9 +27,16 @@ public class bulletmover : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-        Health healthComp = (Health)collision.gameObject.GetComponent(typeof(Health));
-        healthComp.health = healthComp.health - 10;
+        try
+        {
+            Health healthComp = (Health)collision.gameObject.GetComponent(typeof(Health));
+            healthComp.health = healthComp.health - 10;
+        }
+        catch
+        {
+
+        }
+
         //TODO kill us
         Destroy(gameObject);
     }

@@ -9,7 +9,7 @@ public class DataReceiver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,13 +22,27 @@ public class DataReceiver : MonoBehaviour
 
     public void ReadData(byte[] data)
     {
-        
-        buffer[0] = Connection.ByteToDec(new byte[] { data[1], data[2] });
-        buffer[1] = Connection.ByteToDec(new byte[] { data[3], data[4] });
-        buffer[2] = Connection.ByteToDec(new byte[] { data[5], data[6] });
+        if (data[1] == 255)
+        {
+            EnemyJetpack enemyjetpack = (EnemyJetpack)gameObject.GetComponent(typeof(EnemyJetpack));
+            if (data[2] == 1)
+            {
+                enemyjetpack.StartJetpack();
+            }
+            else
+            {
+                enemyjetpack.StopJetpack();
+            }
+        }
+        else
+        {
+            buffer[0] = Connection.ByteToDec(new byte[] { data[1], data[2] });
+            buffer[1] = Connection.ByteToDec(new byte[] { data[3], data[4] });
+            buffer[2] = Connection.ByteToDec(new byte[] { data[5], data[6] });
 
-        buffer[3] = Connection.ByteToDec(new byte[] { data[7], data[8] }) * 3;
-        buffer[4] = Connection.ByteToDec(new byte[] { data[9], data[10] }) * 3;
-        buffer[5] = Connection.ByteToDec(new byte[] { data[11], data[12] }) * 3;
+            buffer[3] = Connection.ByteToDec(new byte[] { data[7], data[8] }) * 3;
+            buffer[4] = Connection.ByteToDec(new byte[] { data[9], data[10] }) * 3;
+            buffer[5] = Connection.ByteToDec(new byte[] { data[11], data[12] }) * 3;
+        }
     }
 }

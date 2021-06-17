@@ -34,7 +34,6 @@ public class BulletLeak : MonoBehaviour
                     leaks[i].startSpeed = (float)relativepercent * 2;
                     leaks[i].startSize = (float)relativepercent * 0.25f;
 
-                    //leaks[i].main().startSpeed.constant = 3;
                     can.fuel = can.fuel - (10 * Time.deltaTime * relativepercent);
                 }
                 else
@@ -75,7 +74,7 @@ public class BulletLeak : MonoBehaviour
                 leaks[i].Stop();
             }
         }
-        if (collision.gameObject.layer == LayerMask.NameToLayer("bullet"))
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("bullet"))
         {
             Vector3 point = new Vector3(0, 0, 0);
             foreach (ContactPoint contact in collision.contacts)
@@ -91,8 +90,6 @@ public class BulletLeak : MonoBehaviour
             particle.Play();
 
             leaks.Add(particle);
-
-            Destroy(collision.gameObject);
         }
     }
 }

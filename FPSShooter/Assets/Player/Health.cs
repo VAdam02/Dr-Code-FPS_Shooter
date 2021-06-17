@@ -24,6 +24,13 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health < 1)
+        {
+            gameObject.transform.position = new Vector3(0, 2, 0);
+            health = 100;
+        }
+
+
         HealthBar hbar = (HealthBar)bar.GetComponent(typeof(HealthBar));
         hbar.value = (double)health / 100;
         hbar.target = gameObject;

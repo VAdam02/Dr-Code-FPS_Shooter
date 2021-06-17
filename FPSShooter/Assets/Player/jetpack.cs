@@ -36,6 +36,17 @@ public class jetpack : MonoBehaviour
         //2-9.5
         if (Input.GetKeyDown("space") && fuel > 0)
         {
+            byte[] data = new byte[13];
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = 0;
+            }
+            data[1] = 255;
+            data[2] = 1;
+            Connection.WriteData(data);
+
+            //Connection.WriteData(new byte[] { 0, 255, 1, 0, ... összesen 13 db szám });
+
             rocketing = true;
             rightfire.Play();
             leftfire.Play();
@@ -47,7 +58,7 @@ public class jetpack : MonoBehaviour
             deltatime = 0;
         }
 
-        if (deltatime > 9.5f)
+        if (deltatime > 9.5f && rocketing)
         {
             sound.time = 1;
             deltatime = 1;
@@ -55,6 +66,15 @@ public class jetpack : MonoBehaviour
 
         if (Input.GetKeyUp("space") || fuel < 0)
         {
+            byte[] data = new byte[13];
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = 0;
+            }
+            data[1] = 255;
+            data[2] = 0;
+            Connection.WriteData(data);
+
             rocketing = false;
             rightfire.Stop();
             leftfire.Stop();
