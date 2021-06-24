@@ -5,3 +5,10 @@ D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\FPSShooterServer\FPSSh
 D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.csproj.CoreCompileInputs.cache
 D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.exe
 D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.pdb
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\bin\Debug\FPSShooterServer.exe.config
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\bin\Debug\FPSShooterServer.exe
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\bin\Debug\FPSShooterServer.pdb
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.csprojAssemblyReference.cache
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.csproj.CoreCompileInputs.cache
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.exe
+D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooterServer\FPSShooterServer\obj\Debug\FPSShooterServer.pdb

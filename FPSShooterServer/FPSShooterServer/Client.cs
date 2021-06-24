@@ -31,33 +31,81 @@ namespace FPSShooterServer
 			Console.WriteLine(tcpClient.Client.RemoteEndPoint.ToString() + " connected");
 		}
 
+		public void Disconnect()
+		{
+			stream.Close();
+			readrunning = false;
+			Program.players.Remove(this);
+
+			byte[] data = new byte[13];
+			for (int i = 0; i < data.Length; i++)
+			{
+				data[i] = 0;
+			}
+			data[0] = ID;
+			data[1] = 254;
+
+			for (int i = 0; i < Program.players.Count; i++)
+			{
+				try
+				{
+					if (Program.players[i].ID != ID)
+					{
+						WriteStream(Program.players[i], data);
+					}
+				}
+				catch
+				{
+
+				}
+			}
+		}
+
 		bool readrunning = true;
 		private static void ReadStream(Client client)
 		{
 			while (client.readrunning)
 			{
-				byte[] data = new byte[13];
-
-				client.stream.Read(data, 0, 13);
-
-				if (data[0] != 255)
+				try
 				{
-					data[0] = client.ID;
-				}
+					byte[] data = new byte[13];
 
-				Console.Write("read - ");
-				for (int xy = 0; xy < data.Length; xy++)
-				{
-					Console.Write(data[xy] + "\t");
-				}
-				Console.WriteLine();
+					client.stream.Read(data, 0, 13);
 
-				for (int i = 0; i < Program.players.Count; i++)
-				{
-					if (Program.players[i].ID != client.ID)
+					if (data[0] != 255)
 					{
-						WriteStream(Program.players[i], data);
+						data[0] = client.ID;
 					}
+
+					Console.Write("read - ");
+					for (int xy = 0; xy < data.Length; xy++)
+					{
+						Console.Write(data[xy] + "\t");
+					}
+					Console.WriteLine();
+
+					for (int i = 0; i < Program.players.Count; i++)
+					{
+						if (Program.players[i].ID != client.ID)
+						{
+							try
+							{
+								WriteStream(Program.players[i], data);
+
+							}
+							catch
+							{
+								//akinek most küldjük lecsatlakozott
+								Program.players[i].Disconnect();
+
+								i--;
+							}
+						}
+					}
+				}
+				catch
+				{
+					//error at reading
 				}
 			}
 		}

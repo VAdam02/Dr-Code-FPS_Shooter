@@ -4,17 +4,41 @@ using UnityEngine;
 
 public class DataReceiver : MonoBehaviour
 {
+    public Health hp;
     float[] buffer = new float[7];
+
+    /*
+     * 0    stop flying
+     * 1    idle
+     * 2    start flying
+     */
+    int fly = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        hp = (Health)gameObject.transform.parent.GetComponent(typeof(Health));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (fly != 1)
+        {
+            EnemyJetpack enemyjetpack = (EnemyJetpack)gameObject.transform.parent.GetChild(2).GetComponent(typeof(EnemyJetpack));
+
+            if (fly == 2)
+            {
+                enemyjetpack.StartJetpack();
+            }
+            else
+            {
+                enemyjetpack.StopJetpack();
+            }
+
+            fly = 1;
+        }
+
         gameObject.transform.parent.position = new Vector3(buffer[0], buffer[1], buffer[2]);
         gameObject.transform.localEulerAngles = new Vector3(buffer[3], gameObject.transform.rotation.y, buffer[5]);
         gameObject.transform.parent.localEulerAngles = new Vector3(gameObject.transform.parent.rotation.x, buffer[4], gameObject.transform.parent.rotation.z);
@@ -24,15 +48,16 @@ public class DataReceiver : MonoBehaviour
     {
         if (data[1] == 255)
         {
-            EnemyJetpack enemyjetpack = (EnemyJetpack)gameObject.GetComponent(typeof(EnemyJetpack));
             if (data[2] == 1)
             {
-                enemyjetpack.StartJetpack();
+                fly = 2;
             }
             else
             {
-                enemyjetpack.StopJetpack();
+                fly = 0;
             }
+
+            hp.health = data[3];
         }
         else
         {

@@ -9,12 +9,16 @@ public class jetpack : MonoBehaviour
     public AudioSource sound;
     public double fuel;
 
+    public Health hp;
+
     Rigidbody rb;
     public bool rocketing;
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = (Health)gameObject.transform.parent.GetComponent(typeof(Health));
+
         rb = (Rigidbody)gameObject.transform.parent.GetComponent(typeof(Rigidbody));
         sound.Stop();
         rightfire.Stop();
@@ -43,6 +47,7 @@ public class jetpack : MonoBehaviour
             }
             data[1] = 255;
             data[2] = 1;
+            data[3] = (byte)hp.health;
             Connection.WriteData(data);
 
             //Connection.WriteData(new byte[] { 0, 255, 1, 0, ... összesen 13 db szám });
@@ -73,6 +78,7 @@ public class jetpack : MonoBehaviour
             }
             data[1] = 255;
             data[2] = 0;
+            data[3] = (byte)hp.health;
             Connection.WriteData(data);
 
             rocketing = false;

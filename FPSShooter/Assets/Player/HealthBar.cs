@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = (Camera)GameObject.Find("Player 1").transform.GetChild(0).GetChild(1).GetComponent(typeof(Camera));
+        cam = (Camera)GameObject.Find("Player1").transform.GetChild(0).GetChild(1).GetComponent(typeof(Camera));
         bar = gameObject.transform.GetChild(0).gameObject;
     }
 
