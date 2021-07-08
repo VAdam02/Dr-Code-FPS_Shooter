@@ -50,6 +50,7 @@ public class Connection : MonoBehaviour
                 GameObject xy = Instantiate(enemy);
                 spawned[data[0]] = true;
                 enemys[data[0]] = xy.gameObject.transform.GetChild(0).GetComponent<DataReceiver>();
+                enemys[data[0]].ID = data[0];
                 enemys[data[0]].ReadData(data);
             }
 

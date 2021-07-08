@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637583330381070796
-    m_Hash: 44596330
+      ticks: 637613570762299933
+    m_Hash: 1409122930
   m_LockFileStatus:
     m_FilePath: D:/D_Programozas/Languages/C#/Dr Code/Projects/2021.01.08/Dr-Code-FPSShooter/FPSShooter/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637583330567529449
-    m_Hash: 3072745199
+      ticks: 637613570817835200
+    m_Hash: 4258452212
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -201,7 +201,7 @@ m_PackageAssets:
         version: 1.1.1
       resolvedDependencies:
       - name: com.unity.test-framework
-        version: 1.1.24
+        version: 1.1.26
       - name: com.unity.ext.nunit
         version: 1.0.6
       - name: com.unity.modules.imgui
@@ -229,12 +229,12 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
         revision: abb44f053e9a41d2e00e149e32a19bcec76e98b4
         path: 
-    - packageId: com.unity.ide.visualstudio@2.0.8
+    - packageId: com.unity.ide.visualstudio@2.0.9
       testable: 0
       isDirectDependency: 1
-      version: 2.0.8
+      version: 2.0.9
       source: 1
-      resolvedPath: D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooter\Library\PackageCache\com.unity.ide.visualstudio@2.0.8
+      resolvedPath: D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooter\Library\PackageCache\com.unity.ide.visualstudio@2.0.9
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
       displayName: Visual Studio Editor
@@ -286,7 +286,7 @@ m_PackageAssets:
         version: 1.1.9
       resolvedDependencies:
       - name: com.unity.test-framework
-        version: 1.1.24
+        version: 1.1.26
       - name: com.unity.ext.nunit
         version: 1.0.6
       - name: com.unity.modules.imgui
@@ -306,13 +306,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637562620210000000
+      datePublishedTicks: 637580705480000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.visualstudio.git
-        revision: 5cdf5d932e6ecbbd83bbe6a40eec2a94b4979501
+        revision: c7cd4c6319806423b3d918b3e9599244e3993d41
         path: 
     - packageId: com.unity.ide.vscode@1.2.3
       testable: 0
@@ -383,12 +383,12 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
         revision: b5ec9b38109e52b1b26597d521e4df75e042ebb9
         path: 
-    - packageId: com.unity.test-framework@1.1.24
+    - packageId: com.unity.test-framework@1.1.26
       testable: 0
       isDirectDependency: 1
-      version: 1.1.24
+      version: 1.1.26
       source: 1
-      resolvedPath: D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooter\Library\PackageCache\com.unity.test-framework@1.1.24
+      resolvedPath: D:\D_Programozas\Languages\C#\Dr Code\Projects\2021.01.08\Dr-Code-FPSShooter\FPSShooter\Library\PackageCache\com.unity.test-framework@1.1.26
       assetPath: Packages/com.unity.test-framework
       name: com.unity.test-framework
       displayName: Test Framework
@@ -433,7 +433,6 @@ m_PackageAssets:
         - 1.1.24
         - 1.1.26
         compatible:
-        - 1.1.24
         - 1.1.26
         verified: 1.1.26
       dependencies:
@@ -465,13 +464,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637505702940000000
+      datePublishedTicks: 637576439750000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: git+https://github.com/Unity-Technologies/com.unity.test-framework.git
-        revision: e6fe8892689398c0d9aba4587e0ba69edc3d82b8
+        revision: ea9d07e64e6d63c4f2fd8b6bc57df0f452ff4fae
         path: 
     - packageId: com.unity.textmeshpro@3.0.6
       testable: 0
@@ -2932,4 +2931,4 @@ m_PackageAssets:
   m_LocalPackages:
     m_LocalFileStatus: []
 m_ProjectPath: D:/D_Programozas/Languages/C#/Dr Code/Projects/2021.01.08/Dr-Code-FPSShooter/FPSShooter/Packages
-m_EditorVersion: 2020.3.12f1 (b3b2c6512326)
+m_EditorVersion: 2020.3.13f1 (71691879b7f5)

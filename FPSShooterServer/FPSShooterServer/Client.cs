@@ -12,6 +12,7 @@ namespace FPSShooterServer
 	{
 		public static byte lastID = 0;
 		public byte ID;
+		public byte HUE;
 
 		TcpClient tcpClient;
 		NetworkStream stream;
@@ -19,6 +20,10 @@ namespace FPSShooterServer
 
 		public Client(TcpClient tcpClient)
 		{
+			Random rnd = new Random();
+			HUE = (byte)rnd.Next(0, 256);
+			Console.WriteLine(HUE);
+
 			this.tcpClient = tcpClient;
 			stream = tcpClient.GetStream();
 
@@ -29,6 +34,39 @@ namespace FPSShooterServer
 			reading.Start();
 
 			Console.WriteLine(tcpClient.Client.RemoteEndPoint.ToString() + " connected");
+
+
+
+
+			for (int i = 0; i < Program.players.Count; i++)
+			{
+				byte[] data = new byte[13];
+				for (int j = 0; j < data.Length; j++)
+				{
+					data[j] = 0;
+				}
+				data[0] = ID;
+				data[1] = 255;
+				data[2] = 0;
+				data[3] = 100;
+				data[4] = HUE;
+
+				if (Program.players[i].ID != ID)
+				{
+					try
+					{
+						WriteStream(Program.players[i], data);
+
+					}
+					catch
+					{
+						//akinek most küldjük lecsatlakozott
+						Program.players[i].Disconnect();
+
+						i--;
+					}
+				}
+			}
 		}
 
 		public void Disconnect()
@@ -75,14 +113,26 @@ namespace FPSShooterServer
 					if (data[0] != 255)
 					{
 						data[0] = client.ID;
+
+						if (data[1] == 255)
+						{
+							data[4] = client.HUE;
+						}
 					}
 
-					Console.Write("read - ");
-					for (int xy = 0; xy < data.Length; xy++)
+
+					//Debug
+					string message = "read - ";
+					if (data[9] == 0 && data[10] == 0 && data[11] == 0 && data[12] == 0)
 					{
-						Console.Write(data[xy] + "\t");
+						for (int xy = 0; xy < data.Length; xy++)
+						{
+							message += data[xy] + "\t";
+						}
+						Console.WriteLine(message);
 					}
-					Console.WriteLine();
+					//Debug
+					
 
 					for (int i = 0; i < Program.players.Count; i++)
 					{
@@ -112,14 +162,7 @@ namespace FPSShooterServer
 
 		private static void WriteStream(Client client, byte[] data)
 		{
-			Console.Write("send - ");
-			for (int xy = 0; xy < data.Length; xy++)
-			{
-				Console.Write(data[xy] + "\t");
-			}
-			Console.WriteLine();
 			client.stream.Write(data, 0, data.Length);
-			Console.WriteLine("data sent");
 		}
 	}
 }

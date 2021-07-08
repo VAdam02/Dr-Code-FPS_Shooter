@@ -6,6 +6,10 @@ public class DataReceiver : MonoBehaviour
 {
     public Health hp;
     float[] buffer = new float[7];
+    public int ID;
+
+    public int HUE = 0;
+    Material mat;
 
     /*
      * 0    stop flying
@@ -14,17 +18,33 @@ public class DataReceiver : MonoBehaviour
      */
     int fly = 1;
 
+    bool live = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        mat = new Material(Shader.Find("Specular"));
+        gameObject.transform.parent.GetComponent<Renderer>().material = mat;
+        gameObject.transform.GetChild(0).GetComponent<Renderer>().material = mat;
+
         hp = (Health)gameObject.transform.parent.GetComponent(typeof(Health));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!live)
+        {
+            Connection.spawned[ID] = false;
+            Destroy(hp.bar);
+            Destroy(gameObject.transform.parent.gameObject);
+        }
+
+
         if (fly != 1)
         {
+            mat.color = Color.HSVToRGB((float)HUE /255, 1f, 1f);
+
             EnemyJetpack enemyjetpack = (EnemyJetpack)gameObject.transform.parent.GetChild(2).GetComponent(typeof(EnemyJetpack));
 
             if (fly == 2)
@@ -57,7 +77,12 @@ public class DataReceiver : MonoBehaviour
                 fly = 0;
             }
 
+            HUE = data[4];
             hp.health = data[3];
+        }
+        else if (data[1] == 254)
+        {
+            live = false;
         }
         else
         {
